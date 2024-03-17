@@ -13,9 +13,10 @@ The frontend is designed to work in tandem with a Lumen backend. You can find th
 
 ## Feature
 
-- Syntax Highlighting: Enhances readability and user experience by visually differentiating code from text.
-- GPT-4 Integration: Utilizes the latest GPT-4 model to provide advanced and contextually aware conversational capabilities.
-- GPT-4 Vision: Leverages the visual understanding capabilities of GPT-4 to interact with images and visual content.
+- **Syntax Highlighting**: Makes code more readable and distinguishable within the chat.
+- **GPT-4 Integration**: Employs the latest iteration of OpenAI's GPT-4 model to deliver advanced conversational capabilities.
+- **GPT-4 Vision**: Harnesses GPT-4's ability to understand and interact with visual content.
+- **Historical Chat Feature**: Maintains and displays a history of your conversations, allowing you to review past interactions and pick up where you left off.
 
 ## Project setup
 ```
