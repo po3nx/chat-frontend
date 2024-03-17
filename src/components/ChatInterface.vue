@@ -56,13 +56,11 @@ export default {
                     hljs.highlight(lang, str, true).value +
                     '</code></pre>';
           } catch (__) {
-            // If highlighting fails, escape the HTML and wrap it in code tags
             return '<pre class="hljs"><code>' +
                       str +
                     '</code></pre>';
           }
         } else {
-          // If no language is specified, escape the HTML and wrap it in code tags
           return '<pre class="hljs"><code>' +
                   str +
                   '</code></pre>';
