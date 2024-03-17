@@ -96,7 +96,7 @@ export default {
         formData.append('image', this.image);
         const reader = new FileReader();
         reader.onload = (e) => {
-          const imgContent = `<img src="${e.target.result}" alt="${this.fileName}" style="height: 100px;width:100px">`;
+          const imgContent = `<img src="${e.target.result}" alt="${this.fileName}" style="height: 200px;">`;
           this.displayResponse(imgContent, "user");
         };
         reader.readAsDataURL(this.image);
