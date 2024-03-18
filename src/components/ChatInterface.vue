@@ -1,23 +1,24 @@
 <template>
-  <div class="chat-container">
-    <div class="chat-history " ref="chatHistory">
-      <div v-for="(message, index) in chatHistory" :key="index" class="chat-message" :class="{ 'user': message.role === 'user', 'assistant': message.role === 'assistant' }">
+  <div class="flex flex-col bg-gray-100 rounded-md h-screen w-screen p-5 pb-20">
+    <div class="flex-grow overflow-y-auto" ref="chatHistory">
+      <div v-for="(message, index) in chatHistory" :key="index" class="max-w-4/5 p-2 mb-2 rounded-lg" :class="{ 'ml-auto bg-green-200 text-right': message.role === 'user', 'mr-auto bg-gray-200 text-left': message.role === 'assistant' }">
         <div v-html="message.message"></div>
       </div>
     </div>
-    <span class="chat-thumbnails" style="display:none"></span>
-  <div class="chat-input-area">
-    <label for="file-upload" class="file-upload-label">
-        <i class="fas fa-paperclip"></i>
-    </label>
-    <input type="file" id="file-upload" @change="handleFileUpload" class="file-input" accept="image/*">
-    <img v-if="imagePreview" :src="imagePreview" class="file-thumbnail" alt="Image preview">
-      <textarea v-model="userInput" placeholder="Type a message..." class="chat-input" ></textarea>
-      <button @click="sendMessage" class="send-button">
-        <svg aria-hidden="true" class="w-6 h-6 rotate-90" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path></svg>
-        <span class="sr-only">Send message</span>
-      </button>
-  </div>
+    <div class="fixed inset-x-0 bottom-0 m-2.5 p-2 bg-blue-200 shadow-md rounded-md ">
+      <div class="flex items-center gap-2">
+        <label for="file-upload" class="cursor-pointer  text-blue-500 mr-2 text-lg">
+            <i class="fas fa-paperclip"></i>
+        </label>
+        <input type="file" id="file-upload" @change="handleFileUpload" class="hidden" accept="image/*">
+        <img v-if="imagePreview" :src="imagePreview" class="h-12 w-auto" alt="Image preview">
+        <textarea v-model="userInput" placeholder="Type a message..." class="flex-grow p-2 rounded-lg h-12 border border-gray-300"></textarea>
+        <button @click="sendMessage" class="p-2 rounded-lg border-none bg-blue-500 text-white cursor-pointer hover:bg-blue-600">
+          <svg aria-hidden="true" class="w-6 h-6 transform rotate-90" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path></svg>
+          <span class="sr-only">Send message</span>
+        </button>
+      </div>
+    </div>
   </div>
 </template>
   
@@ -211,103 +212,5 @@ export default {
 </script>
   
 <style scoped>
-  .chat-container {
-    display: flex;
-    flex-direction: column;
-    width: 98vw; /* Full viewport width */
-    height: 90vh; /* Full viewport height */
-    margin: 0;
-    box-shadow: none;
-    border-radius: 5;
-    overflow: hidden;
-    font-family: 'Arial', sans-serif;
-  }
 
-  .chat-history {
-    padding: 1rem;
-    overflow-y: auto;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    flex-grow: 1; /* Grow to use available space */
-  }
-  
-  .chat-message {
-    max-width: 80%;
-    padding: 0.5rem 0.5rem;
-    border-radius: 16px;
-    line-height: 1.4;
-  }
-  
-  .chat-message.user {
-    align-self: flex-end;
-    background-color: #dcf8c6;
-    text-align: right;
-  }
-  
-  .chat-message.assistant {
-    align-self: flex-start;
-    background-color: #e5e5ea;
-    text-align: left;
-  }
-  
-  .chat-input-area {
-    background-color: #f0f0f0;
-    padding: 1rem;
-    margin-left:1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  
-  .chat-input {
-    flex-grow: 1;
-    padding: 0.5rem;
-    border-radius: 16px;
-    height: 3em;
-    border: 1px solid #ccc;
-  }
-  
-  .file-input {
-    display: none;
-  }
-  
-  .send-button {
-    padding: 0.5rem 1rem;
-    border-radius: 16px;
-    border: none;
-    background-color: #4a76a8;
-    color: white;
-    cursor: pointer;
-  }
-  
-  .send-button:hover {
-    background-color: #3b5a7d;
-  }
-  .file-upload-label {
-    cursor: pointer;
-    color: #4a76a8;
-    margin-right: 0.5rem; /* Add some space between the upload and send buttons */
-    font-size: 1.2rem; /* Adjust the size of the icon as needed */
-  }
-
-  .file-upload-label:hover {
-    color: #3b5a7d;
-  }
-
-  .file-input {
-    display: none; /* Keep this hidden */
-  }
-  .file-name-display {
-    color: #555;
-    margin-top: 0.5rem;
-    font-size: 0.85rem;
-  }
-  .file-thumbnail {
-    /* Set the height to match the text input height */
-    height: 3em; /* Adjust as needed */
-    width: auto; /* Maintain aspect ratio */
-    /* Other styles as needed */
-  }
 </style>
