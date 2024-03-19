@@ -43,7 +43,7 @@ export default {
   created() {
     // Initialize the markdown-it instance when the component is created
     this.md = markdownIt({
-      html: true,
+      html: false,
       xhtmlOut: false,
       breaks: false,
       langPrefix: 'language-',
