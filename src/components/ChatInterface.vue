@@ -43,7 +43,7 @@ export default {
   created() {
     // Initialize the markdown-it instance when the component is created
     this.md = markdownIt({
-      html: true,
+      html: false,
       xhtmlOut: false,
       breaks: false,
       langPrefix: 'language-',
@@ -98,7 +98,7 @@ export default {
         const reader = new FileReader();
         reader.onload = (e) => {
           const imgContent = `<img src="${e.target.result}" alt="${this.fileName}" style="height: 200px;">`;
-          this.displayResponse(imgContent, "user");
+          this.chatHistory.push({ role:"user", message: imgContent });
         };
         reader.readAsDataURL(this.image);
       }
