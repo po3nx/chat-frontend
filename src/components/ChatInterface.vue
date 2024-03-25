@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col bg-gray-100 rounded-md h-screen w-screen p-5 pb-20">
     <div class="flex-grow overflow-y-auto" ref="chatHistory">
-      <div v-for="(message, index) in chatHistory" :key="index" class="max-w-4/5 p-2 mb-2 rounded-lg" :class="{ 'ml-auto bg-green-200 text-right': message.role === 'user', 'mr-auto bg-gray-200 text-left': message.role === 'assistant' }">
+      <div v-for="(message, index) in chatHistory" :key="index" class="max-w-4/5 p-2 mb-2 rounded-lg" :class="{ 'ml-60 bg-green-200 text-left': message.role === 'user', 'mr-20 bg-gray-200 text-left': message.role === 'assistant' }">
         <div v-html="message.message"></div>
       </div>
     </div>
@@ -53,16 +53,16 @@ export default {
       highlight: function (str, lang) {
         if (lang && hljs.getLanguage(lang)) {
           try {
-            return '<pre class="hljs"><code>' +
+            return '<pre class="hljs overflow-auto border border-gray-300 p-4 mt-4 whitespace-pre-wrap break-words"><code>' +
                     hljs.highlight(lang, str, true).value +
                     '</code></pre>';
           } catch (__) {
-            return '<pre class="hljs"><code>' +
+            return '<pre class="hljs overflow-auto border border-gray-300 p-4 mt-4 whitespace-pre-wrap break-words"><code>' +
                       str +
                     '</code></pre>';
           }
         } else {
-          return '<pre class="hljs"><code>' +
+          return '<pre class="hljs overflow-auto border border-gray-300 p-4 mt-4 whitespace-pre-wrap break-words"><code>' +
                   str +
                   '</code></pre>';
         }
