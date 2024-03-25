@@ -83,7 +83,11 @@ export default {
         })
         .then(data => {
           data.messages.forEach((message)=>{
-            this.displayResponse(message.message, message.role,);
+            if (message.message.startsWith('<img src="data:image/png;base64,')){
+              this.chatHistory.push({ role:message.role, message: message.message });
+            }else{
+              this.displayResponse(message.message, message.role);
+            }
           });
         })
         .catch(error => {
