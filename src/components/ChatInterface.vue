@@ -53,8 +53,8 @@ export default {
       highlight: function (str, lang) {
         if (lang && hljs.getLanguage(lang)) {
           try {
-            return '<pre class="hljs overflow-auto border border-gray-300 p-4 mt-4 whitespace-pre-wrap break-words"><code>' +
-                    hljs.highlight(lang, str, true).value +
+            return '<pre class="hljs overflow-auto border border-gray-300 p-4 mt-4 whitespace-pre-wrap break-words"><code class="language-'+lang+'">' +
+                    hljs.highlightAuto(str).value +
                     '</code></pre>';
           } catch (__) {
             return '<pre class="hljs overflow-auto border border-gray-300 p-4 mt-4 whitespace-pre-wrap break-words"><code>' +
